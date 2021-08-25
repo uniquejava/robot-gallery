@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import styles from "./Robot.module.css";
 import { appContext } from "../AppState";
-import withAddToCart from "./AddToCart";
+import { withAddToCart } from "./AddToCart";
 export interface RobotProps {
   id: number;
   name: string;
   email: string;
   addToCart: (id, name) => void;
 }
+/**
+ * 使用HOC得到addToCart
+ */
 const Robot: React.FC<RobotProps> = ({ id, name, email, addToCart }) => {
   const value = useContext(appContext);
 

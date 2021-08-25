@@ -28,4 +28,23 @@ export const withAddToCart = (ChildComponent: React.ComponentType<RobotProps>) =
   };
 };
 
-export default withAddToCart;
+export const useAddToCart = () => {
+  // 此处添加业务逻辑的处理代码
+  // ...
+  const setState = useContext(appSetStateContext);
+
+  const addToCart = (id, name) => {
+    if (setState) {
+      setState((prevState) => {
+        return {
+          ...prevState,
+          shoppingCart: {
+            items: [...prevState.shoppingCart.items, { id, name }],
+          },
+        };
+      });
+    }
+  };
+
+  return addToCart;
+};
