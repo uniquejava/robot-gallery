@@ -3,6 +3,7 @@ import Robot from "./components/Robot";
 import styles from "./App.module.css";
 import ShoppingCart from "./components/ShoppingCart";
 import { useEffect, useState } from "react";
+import RobotDiscount from "./components/RobotDiscount";
 const App: React.FC = (props) => {
   const [count, setCount] = useState(0);
   const [robotGallery, setRobotGallery] = useState<any>([]);
@@ -41,9 +42,13 @@ const App: React.FC = (props) => {
       <ShoppingCart />
       {!loading ? (
         <div className={styles.robotList}>
-          {robotGallery.map((r) => (
-            <Robot key={r.id} id={r.id} name={r.name} email={r.email} />
-          ))}
+          {robotGallery.map((r, index) =>
+            index % 2 === 0 ? (
+              <RobotDiscount key={r.id} id={r.id} name={r.name} email={r.email} />
+            ) : (
+              <Robot key={r.id} id={r.id} name={r.name} email={r.email} />
+            )
+          )}
         </div>
       ) : (
         <h2>loading加载中 </h2>
